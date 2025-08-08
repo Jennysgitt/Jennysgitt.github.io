@@ -1,38 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="css/materialize.css">
-    <!-- link icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        /* to import fonts from google (google fonts) */
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenny's Portfolio</title>
+  <link rel="stylesheet" href="css/materialize.css">
+  <link rel="shortcut icon" href="img/port.jpeg" type="image/x-icon">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      /* Removed flex properties from body to allow individual section centering */
+      font-family: 'Roboto Condensed', sans-serif; /* Using one of your imported fonts */
+    }
 
-    
-    </style>
-    <link rel="shortcut icon" href="img/picon.jpg" type="image/x-icon">
+    nav {
+      background: white;
+      box-shadow: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .right {
+      margin-top: 1.5%;
+    }
+
+    .icon {
+      margin-top: 1.2%;
+    }
+
+    nav .material-icons {
+      color: #5e35b1;
+    }
+
+    .intro h4 {
+      color: #5e35b1;
+      margin-left: 28%;
+      margin-top: 20%;
+      font-size: 40px;
+    }
+
+    .intro p {
+      margin-left: 15%;
+      font-size: 16px;
+    }
+
+    .about {
+      max-width: 900px;
+      margin: 6% auto 0;
+    }
+
+    .about h5 {
+      color: #5e35b1;
+    }
+
+    .services {
+      color: #5e35b1;
+      text-align: center;
+      margin-top: 8%;
+    }
+
+    .tools {
+      margin-left: 20%;
+      margin-right: 15%;
+      display: flex; /* Use flexbox for tools section */
+      flex-wrap: wrap;
+      justify-content: center; /* Center tool items */
+      gap: 30px; /* Space between tool items */
+    }
+
+    .gradient-bg {
+      background: linear-gradient(to bottom, #ffffff, #5e35b1);
+    }
+
+    /* Equal-height cards */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 3%;
+    }
+
+    .col {
+      display: flex;
+    }
+
+    .card.hoverable {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.5s ease, box-shadow 0.5s ease; /* Added transition for interactivity */
+    }
+
+    .card.hoverable:hover {
+      transform: translateY(-10px); /* Lift card on hover */
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    }
+
+    .card-image img {
+      max-width: 90%;
+      height: auto;
+      display: block; /* Changed to block for better centering */
+      margin: 0 auto; /* Center image within card-image */
+      padding:2rem;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+    }
+
+    /* Contact Form Specific Styles */
+    #contact-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Make section take full viewport height */
+        padding: 20px; /* Add some padding for smaller screens */
+        box-sizing: border-box; /* Include padding in element's total width and height */
+    }
+
+    .form-container {
+      padding: 30px 40px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.1); /* Using direct rgba for consistency */
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(152, 155, 201, 0.37);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      color: white; /* Ensure text color is white for the form */
+      /* Removed justify-content: center as it's handled by #contact-section */
+    }
+
+    .title {
+      font-size: 2.5em;
+      margin-bottom: 25px;
+      font-weight: 300;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 400;
+      color: #f0f0f0; /* Using direct color for consistency */
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 1px solid #ccc; /* Using direct color for consistency */
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #f0f0f0; /* Using direct color for consistency */
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      border-color: #f0f0f0; /* Using direct color for consistency */
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+
+    #submit-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 50px;
+      background: #f0f0f0; /* Using direct color for consistency */
+      color: #5e35b1; /* Using direct color for consistency */
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    #submit-btn:hover {
+      background: #5e35b1; /* Using direct color for consistency */
+      color: #f0f0f0; /* Using direct color for consistency */
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Tool Icons Interactivity */
+    .tool-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        width: 120px; /* Fixed width for better alignment */
+        height: 120px; /* Fixed height */
+    }
+
+    .tool-item:hover {
+        transform: scale(1.1); /* Slightly enlarge on hover */
+    }
+
+    .tool-item img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .tool-name {
+        position: absolute;
+        bottom: -25px; /* Position below the icon */
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8em;
+        white-space: nowrap;
+        opacity: 0; /* Hidden by default */
+        transition: opacity 0.3s ease, bottom 0.3s ease;
+        pointer-events: none; /* Allows clicks to pass through to the icon */
+    }
+
+    .tool-item:hover .tool-name {
+        opacity: 1; /* Show on hover */
+        bottom: -35px; /* Move up slightly on hover */
+    }
+
+    /* Responsive adjustments for tools section */
+    @media (max-width: 600px) {
+        .tools {
+            margin-left: 0;
+            margin-right: 0;
+            justify-content: space-around; /* Distribute items evenly */
+        }
+        .tool-item {
+            width: 90px;
+            height: 90px;
+            padding: 10px;
+        }
+    }
+
+  </style>
 </head>
-<body>
-    <header>
-        <div class="nabar-fixed">
-            <nav class="black">
-                <div class="nav-wrapper nav-container">
-                    <a href="/index.html" class="brand-logo">
-                        <img src="img/jennyslogo.jpg" alt="main logo" width="95px" height="55px" class="hide-on-med-and-down">
-                        <img src="img/jennyslogo.jpg" alt="main logo" width="75%" class="hide-on-large-only">
-                    </a>
-                <ul class="right hide-on-med-and-down">
-                <li><a class="white-text text-darken-4" href="#">Home</a></li>
-                <li><a class="white-text text-darken-4" href="#">About</a></li>
-                <li><a class="white-text text-darken-4" href="#">Services</a></li>
-                <li><a class="white-text text-darken-4" href="#">Contacts</a></li>
-                </ul>
-                </div>
-            </nav>
+<body class="gradient-bg">
+  <header>
+    <div class="navbar-fixed">
+      <nav class="white">
+        <div class="container">
+          <a href="index.html" class="brand-logo">
+            <img src="img/icon1.jpg" alt="main logo" width="5%" class="icon">
+          </a>
+          <ul class="right">
+            <li><a href="#home"><i class="material-icons"><img src="img/home_mobile.svg" alt="home"></i></a></li>
+            <li><a href="#projects"><i class="material-icons"><img src="img/clients_mobile.svg" alt="projects"></i></a></li>
+            <li><a href="#services"><i class="material-icons"><img src="img/services.svg" alt="services" width="80%"></i></a></li>
+            <li><a href="#contact-section"><i class="material-icons"><img src="img/connect_mobile.svg" alt="chat"></i></a></li>
+          </ul>
         </div>
-    </header>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l6">
+            <img src="img/coder_2.svg" alt="Avatar" width="100%" class="intropic responsive-img">
+          </div>
+          <div class="col s12 m6 l6">
+            <div class="intro" id="home">
+              <h4>Hi, Welcome!</h4>
+              <p>To my webpage, I am a Front End Developer based in Abuja.</p>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about">
+        <h5>About Me</h5>
+        <p>
+          Hi there. I'm Jenny Rotimi. A Front End Developer based in Abuja, Nigeria.
+          I build simple yet modern design systems and patterns that improve user experience, add value, ensure it is user-friendly,
+          & increase productivity on web apps and sites. I build websites of various designs based on what my clients need, making it effective, pleasing and very sustainable.
+        </p>
+      </div>
+  </section>
+  
+  <section class="section">
+    <h5 class="services" id="services">Services I Offer</h5>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 l4">
+          <div class="card hoverable">
+            <div class="card-image"><img src="img/responsive_1.svg" class="responsive-img materialboxed" alt=""></div>
+            <div class="card-content">
+              <span class="card-title" style="color: #5e35b1;">Responsive Websites</span>
+              <hr>
+              <p>I build modern, responsive web applications using the latest technologies and tools. Each project is optimized for performance across all screen sizes from mobile devices to large desktops.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l4">
+          <div class="card hoverable">
+            <div class="card-image"><img src="img/coder_3.svg" class="responsive-img materialboxed" alt=""></div>
+            <div class="card-content">
+              <span class="card-title" style="color: #5e35b1;">Freelance & Remote Work</span>
+              <hr>
+              <p>I work remotely and maintain a flexible schedule. I'm highly available, communicative and adaptable to your project needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l4">
+          <div class="card hoverable">
+            <div class="card-image"><img src="img/htmlcss.svg" class="responsive-img materialboxed" alt=""></div>
+            <div class="card-content">
+              <span class="card-title" style="color: #5e35b1;">Static Website Development</span>
+              <hr>
+              <p>I design clean, affordable, and user-friendly static websites, ideal for small businesses and startups looking to establish a strong online presence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 l4">
+          <div class="card hoverable">
+            <div class="card-image"><img src="img/content_mgt.svg" class="responsive-img materialboxed" alt=""></div>
+            <div class="card-content">
+              <span class="card-title" style="color: #5e35b1;">Content Management</span>
+              <hr>
+              <p>From blogs and news updates to social media and article scheduling, I offer content management services to keep your platforms current and engaging.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l4">
+          <div class="card hoverable">
+            <div class="card-image"><img src="img/co_workers.svg" class="responsive-img materialboxed" alt=""></div>
+            <div class="card-content">
+              <span class="card-title" style="color: #5e35b1;">Microsoft Office Tutoring</span>
+              <hr>
+              <p>Certified in Microsoft Word, Excel, SharePoint, and PowerPoint, I offer personalised tutoring sessions to help individuals and teams master these essential tools.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l4">
+          <div class="card hoverable">
+            <div class="card-image"><img src="img/version_control.svg" class="responsive-img materialboxed" alt=""></div>
+            <div class="card-content">
+              <span class="card-title" style="color: #5e35b1;">Version Control with Git & GitHub</span>
+              <hr>
+              <p>All projects are managed with Git and GitHub for streamlined version control, team collaboration, and long-term code security. Your project is always in safe, reliable hands.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <br><br>
+    <h4 class="center-align" style="color: white;">I build with these tools</h4>
+    <br>
+    <div class="tools">
+      <div class="tool-item">
+        <img src="img/html5.svg" alt="HTML5" class="responsive-img">
+        <span class="tool-name">HTML5</span>
+      </div>
+      <div class="tool-item">
+        <img src="img/css-5.svg" alt="CSS3" class="responsive-img">
+        <span class="tool-name">CSS3</span>
+      </div>
+      <div class="tool-item">
+        <img src="img/javascript.svg" alt="JavaScript" class="responsive-img">
+        <span class="tool-name">JavaScript</span>
+      </div>
+      <div class="tool-item">
+        <img src="img/react.svg" alt="React" class="responsive-img">
+        <span class="tool-name">React</span>
+      </div>
+      <div class="tool-item">
+        <img src="img/visual-studio-code.svg" alt="VS Code" class="responsive-img">
+        <span class="tool-name">VS Code</span>
+      </div>
+      <div class="tool-item">
+        <img src="img/tailwindcss.svg" alt="Tailwind CSS" class="responsive-img">
+        <span class="tool-name">Tailwind CSS</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-section">
+    <div class="form-container">
+      <h1 class="title">Contact Me</h1>
+      <form id="contact-form">
+        <div class="input-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="input-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" id="submit-btn">send message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <br><br><br>
+    <h5 class="center-align" style="color:white;">Get In Touch</h5>
+    <p class="center-align" style="color:white;">You can reach me on the following platforms:</p>
+    <div class="footer center-align">
+      <img src="img/linkedin-icon-2.svg" alt="linkedin" width="3%" class="responsive-img">
+      <img src="img/github-icon-1.svg" alt="github" width="3%" class="responsive-img">
+      <img src="img/twitter.svg" alt="twitter" width="3%" class="responsive-img">
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
